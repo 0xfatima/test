@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giphy_World</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="display">
+    <label for="image">Enter a Keyword</label>
+    <input type="text" placeholder="cats" id="image" name="image" >
+    <button>Submit</button>
+    <img src="./assets/gif.png" >
+</div>
+
+    <script>
+        async function getGif(){
+        const searchWord= document.getElementById("image").value;
+        const img = document.querySelector("img")
+        let res= await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=Ghb1yIi39SMrb6mgET6MNZ27gRaz4NQe&s=${searchWord}`,{mode:"cors"})
+        let catData= await res.json();
+         
+            img.src= catData.data.images.original.url;
+        }
+
+        document
+        .querySelector("button").addEventListener("click",getGif)
+    </script>
+</body>
+</html>
